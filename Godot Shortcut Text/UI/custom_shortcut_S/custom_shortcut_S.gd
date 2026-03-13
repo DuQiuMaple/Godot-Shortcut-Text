@@ -141,7 +141,7 @@ func add_InputAction():
 
 #show InputMapAtion name to user
 func show_InputMapAction_name() -> void:
-	%ts.text = "InuputMapName: " + InputMapActionName
+	%ts.text = "InputMapName: " + InputMapActionName
 
 #Default Setting
 func default_setting(s:String,k:String,m:int,m_k:Array,atv:bool = true):
