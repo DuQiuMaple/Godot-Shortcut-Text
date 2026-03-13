@@ -1,7 +1,7 @@
 # GODOT Plugin: Insert Text with Shortcuts
 
 Plugin Name: Godot Shortcut Text  
-Version: 0.2.1 - beta  
+Version: 0.2.5 - beta  
 Supported Godot Versions:4.6 4.x(Compatible Version)
 
 ## Plugin Introduction:
