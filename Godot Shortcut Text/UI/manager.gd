@@ -191,9 +191,6 @@ func Loading():
 		push_error("From Godot Shortcut Text: Unable to open archive file")
 		return
 	
-	if Dic.has('Setting'):
-		var setting = Dic['Setting']
-		%Shortcut_Conflict_Warning.button_pressed = setting['shortcut_conflict_warning']
 	#region load Custom Shortcut
 	Dic = Dic.values()
 	var new
@@ -251,10 +248,6 @@ func Save():
 			Dic[str(Dic.size())] = single.Save()
 		for multiple in shortcuts_M:
 			Dic[str(Dic.size())] = multiple.Save()
-		
-		Dic['Setting'] = {
-			"shortcut_conflict_warning":%Shortcut_Conflict_Warning.button_pressed
-		}
 		
 	var json_dic = JSON.stringify(Dic)
 	file.store_string(json_dic)
