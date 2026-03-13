@@ -1,7 +1,7 @@
 # GODOT插件：快捷键插入文本
 
 插件名字:Godot Shortcut Text  
-版本：0.2.1 - beta  
+版本：0.2.5 - beta  
 支持godot版本：4.6以上 4.x(兼容版)
 
 ## 插件介绍：
