@@ -156,16 +156,6 @@ func Delete_Custom_Shortcut(node):
 		shortcuts_S.erase(node)
 #endregion
 
-#region warning
-func shortcut_conflict_warning(s:String ,k:Key):
-	if show_shortcut_conflict_warning():
-		var k_s = OS.get_keycode_string(k).to_upper()
-		push_error("From Godot Shortcut Text: shortcut conflict - {s} with Key:{k}".format({'s':s,'k':k_s}))
-
-func show_shortcut_conflict_warning():
-	return %Shortcut_Conflict_Warning.button_pressed
-#endregion
-
 func Reset_Single_Shortcut_InputAction():
 	for child in shortcuts_S:
 		child.add_InputAction()
