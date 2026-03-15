@@ -61,6 +61,7 @@ func _on_delete_button_pressed() -> void:
 func _on_Modifier_Keys_button_prressed():
 	if InputMap.has_action(InputMapActionName):
 		add_InputAction()
+	is_editor_shortcut_used()
 
 #LineEdit_text_change
 func text_change(new:String):
@@ -115,6 +116,9 @@ func shortcut_change(new_text: String) -> void:
 	Key_line_edit.text = OS.get_keycode_string(Keys)
 	
 	add_InputAction()
+	
+	#check if shortcut conflict
+	is_editor_shortcut_used()
 
 #add InputMap
 func add_InputAction():
@@ -166,6 +170,23 @@ func extract_keys(text:String):
 			keys = keycode
 			break
 	return keys
+
+#check if shorcut conflict
+func is_editor_shortcut_used():
+	return
+	#var EventKey = InputEventKey.new()
+	#EventKey.keycode = Keys
+	#EventKey.ctrl_pressed = is_Crtl
+	#EventKey.alt_pressed = is_Alt
+	#EventKey.shift_pressed = is_Shift
+	#
+	#var settings = EditorInterface.get_editor_settings()
+	#var shortcut_names = settings.get_shortcut_list()
+#
+	#for name in shortcut_names:
+		#var shortcut = settings.get_shortcut(name)
+		#if shortcut and shortcut.matches_event(EventKey):
+			#owner.shortcut_conflict_warning(name,Keys)
 
 #Save
 func Save():

@@ -1,5 +1,5 @@
 @tool
-extends Panel
+extends PanelContainer
 #region
 var script_editor
 var save_path = "res://addons/Godot Shortcut Text/Resource/Shortcuts_Save.json"
@@ -26,10 +26,11 @@ var escapes = {
 }
 #endregion
 
-#region child
+#region node
 #Single 1  Multiple 0
 @onready var shortcuts_container_M = %Custom_Shortcuts_M
 @onready var shortcuts_container_S = %Custom_Shortcuts_S
+@onready var Snippet_Container = %Snippet_Container
 var tscn_M = preload("res://addons/Godot Shortcut Text/UI/custom_shortcut_M/Custom_Shortcut_M.tscn")
 var tscn_S = preload("res://addons/Godot Shortcut Text/UI/custom_shortcut_S/Custom_Shortcut_S.tscn")
 #endregion
@@ -59,6 +60,13 @@ func _input(event: InputEvent) -> void:
 	#if have single key shortcut
 	if shortcuts_S:
 		for shortcut in shortcuts_S:
+			if shortcut.try_shortcut_text(event):
+				insert_text(shortcut.mode,shortcut.shortcut_text)
+				get_viewport().set_input_as_handled()    # stop the event spread
+	
+	var shortcuts = Snippet_Container.get_children()
+	if shortcuts:
+		for shortcut in shortcuts:
 			if shortcut.try_shortcut_text(event):
 				insert_text(shortcut.mode,shortcut.shortcut_text)
 				get_viewport().set_input_as_handled()    # stop the event spread
@@ -156,6 +164,16 @@ func Delete_Custom_Shortcut(node):
 		shortcuts_S.erase(node)
 #endregion
 
+#region warning
+func shortcut_conflict_warning(s:String ,k:Key):
+	if show_shortcut_conflict_warning():
+		var k_s = OS.get_keycode_string(k).to_upper()
+		push_error("From Godot Shortcut Text: shortcut conflict - {s} with Key:{k}".format({'s':s,'k':k_s}))
+
+func show_shortcut_conflict_warning():
+	return %Shortcut_Conflict_Warning.button_pressed
+#endregion
+
 func Reset_Single_Shortcut_InputAction():
 	for child in shortcuts_S:
 		child.add_InputAction()
@@ -175,7 +193,6 @@ func append_custom_shortcut():
 
 #load
 func Loading():
-	
 	var Dic
 	var file
 	if FileAccess.file_exists(save_path):
@@ -191,6 +208,9 @@ func Loading():
 		push_error("From Godot Shortcut Text: Unable to open archive file")
 		return
 	
+	if Dic.has('Setting'):
+		var setting = Dic['Setting']
+		%Shortcut_Conflict_Warning.button_pressed = setting['shortcut_conflict_warning']
 	#region load Custom Shortcut
 	Dic = Dic.values()
 	var new
@@ -248,6 +268,10 @@ func Save():
 			Dic[str(Dic.size())] = single.Save()
 		for multiple in shortcuts_M:
 			Dic[str(Dic.size())] = multiple.Save()
+		
+		Dic['Setting'] = {
+			"shortcut_conflict_warning":%Shortcut_Conflict_Warning.button_pressed
+		}
 		
 	var json_dic = JSON.stringify(Dic)
 	file.store_string(json_dic)
