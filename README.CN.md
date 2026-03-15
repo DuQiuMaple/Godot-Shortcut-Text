@@ -1,7 +1,7 @@
 # GODOT插件：快捷键插入文本
 
 插件名字:Godot Shortcut Text  
-版本：0.2.1 - beta  
+版本：1.0.0
 支持godot版本：4.6以上 4.x(兼容版)
 
 ## 插件介绍：
@@ -17,7 +17,7 @@
 --2.2 Normal模式(默认模式)  
 --2.3 Repeat模式(重复模式)  
 --2.4 Embrace模式(包围模式)  
---2.5 注意事项  
+--2.5 snippet代码块
 -3. 漏洞以及警告  
 --3.1 非.gd文件不支持  
 --3.2 关于多键触发的快捷键冲突  
@@ -62,6 +62,13 @@ Embace模式是一个特殊的模式，为了方便理解，我先举个例子:
 Embrace模式就类似于上述功能，你可以选择一段文本，并且在文本两端插入自定义字符，选中的文本用{s}代替。  
 在举个例子，`#region #endregion`用来在godot中注释代码块，如果我们想实现为选中的代码块两边分别插入#region #endregion，你可以选择Embrace模式并在自定义文本框中输入: `#region{nt}{s}{nt}#endregion`，此处{s}就是选中文本的位置。同时Embrace模式也具备Repeat模式的自动添加制表符tab功能,你只要输入{t}，就能插入输入光标所在行的前置制表符tab相同数量的制表符，你也可以用{nt},{nt}是先换行，再插入制表符。
 ![Embrace模式](./example/example_Embrace.gif)
+
+### 2.5 snippet代码块
+在插件面板上方有个snippet manager选项卡，这是自定义代码块，自定义代码块和前面的功能区别是用户可以在插件文件夹下的`Custom_Text.json`文件中自定义自己想要的代码块，此处有示例，你可以在文件中配置你的自定义插入文本、触发键(同单键触发，选取字符串中第一个可识别的按键),和是否启用其他三个修饰键，插入模式(0为Normal模式，1为Repeat模式，2为Embrace模式)，以及是否启用。
+![snippet](./example/snippet.png)
+启用后，即可在插件面板Snippet_Manager选项卡中按下`Reset_InputAction`按钮来将你的自定义代码块与动作映射绑定。  
+snippet代码块的实现逻辑与单键触发相同，不同的是snippet能更好地支持多行文本以及转义字符，snippet支持任何转义字符。(不受3.4 转义字符的限制)
+![snippet2](./example/snippet2.png)
 
 ## 3. 漏洞以及警告
 
