@@ -1,7 +1,7 @@
 # GODOT Plugin: Insert Text with Shortcuts
 
 Plugin Name: Godot Shortcut Text  
-Version: 0.2.5 - beta  
+Version: 1.0.0 
 Supported Godot Versions:4.6 4.x(Compatible Version)
 
 ## Plugin Introduction:
@@ -17,7 +17,7 @@ This plugin was developed by me and is currently in beta. There are some bugs, a
 --2.2 Normal Mode (Default)  
 --2.3 Repeat Mode  
 --2.4 Embrace Mode  
---2.5 Precautions  
+--2.5 Snippet Code Blocks  
 -3. Bugs and Warnings  
 --3.1 Non-.gd Files Not Supported  
 --3.2 Shortcut Conflicts with Multiple-Key Triggers  
@@ -26,7 +26,7 @@ This plugin was developed by me and is currently in beta. There are some bugs, a
 -4. Contact Information
 
 ## 1. Installation Guide
-The installation process for this plugin is the same as for other Godot plugins. If you already know how to install and use Godot plugins, you can skip this chapter.
+The installation process for this plugin is the same as for other Godot plugins. If you already know how to install and use Godot plugins, you can skip this chapter.  
 **(1) Download the plugin version archive from the download link and extract it.**
 ![file1](./example/file1.png)
 ![file2](./example/file2.png)
@@ -60,6 +60,13 @@ Imagine you're coding and have just finished typing a whole word. You realize yo
 Embrace Mode is similar to the above functionality. You can select a block of text and insert custom characters at both ends. Use `{s}` in your custom text to represent the selected text's position.
 For another example, `#region #endregion` is used in Godot to comment out code blocks. If we want to insert `#region` before and `#endregion` after a selected code block, you can choose Embrace Mode and enter the following in the custom text field: `#region{nt}{s}{nt}#endregion`. Here, `{s}` is the placeholder for the selected text. Embrace Mode also has the automatic tab indentation feature found in Repeat Mode. Just enter `{t}` to insert the same number of leading tabs as the line where the cursor is. You can also use `{nt}`, which inserts a newline first, then the tabs.
 ![Embrace Mode](./example/example_Embrace.gif)
+
+### 2.5 Snippet Code Blocks
+Above the plugin panel, there is a "Snippet Manager" tab. This is for custom code blocks. The difference between custom code blocks and the previous functions is that users can define their own desired code blocks in the Custom_Text.json file located in the plugin folder. Examples are provided there. In the file, you can configure your custom insertion text, trigger key (same as single-key trigger, selects the first identifiable key in the string), whether to enable the other three modifier keys, insertion mode (0 for Normal mode, 1 for Repeat mode, 2 for Embrace mode), and whether to enable it.
+![snippet](./example/snippet.png)
+Once enabled, you can press the Reset_InputAction button in the Snippet_Manager tab of the plugin panel to bind your custom code block to the action mapping.
+The implementation logic of snippet code blocks is the same as that of single-key triggers. The difference is that snippets better support multi-line text and escape characters. Snippets support any escape character (not restricted by section 3.4 Escape Characters).
+![snippet2](./example/snippet2.png)
 
 ## 3. Bugs and Warnings
 
