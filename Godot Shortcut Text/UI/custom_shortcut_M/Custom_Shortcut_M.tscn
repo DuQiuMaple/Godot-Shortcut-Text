@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://s6860rv52yhf"]
 
-[ext_resource type="Script" uid="uid://cg4dq2ixklkll" path="res://addons/Godot Shortcut Text/UI/custom_shortcut_M/custom_shortcut_M.gd" id="1_uie7b"]
+[ext_resource type="Script" path="res://addons/Godot Shortcut Text/UI/custom_shortcut_M/custom_shortcut_M.gd" id="1_uie7b"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bxlhk"]
 bg_color = Color(0.15, 0.15, 0.15, 1)

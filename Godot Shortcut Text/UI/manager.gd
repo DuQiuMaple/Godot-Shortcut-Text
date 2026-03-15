@@ -1,5 +1,5 @@
 @tool
-extends Panel
+extends PanelContainer
 #region
 var script_editor
 var save_path = "res://addons/Godot Shortcut Text/Resource/Shortcuts_Save.json"
@@ -26,10 +26,11 @@ var escapes = {
 }
 #endregion
 
-#region child
+#region node
 #Single 1  Multiple 0
 @onready var shortcuts_container_M = %Custom_Shortcuts_M
 @onready var shortcuts_container_S = %Custom_Shortcuts_S
+@onready var Snippet_Container = %Snippet_Container
 var tscn_M = preload("res://addons/Godot Shortcut Text/UI/custom_shortcut_M/Custom_Shortcut_M.tscn")
 var tscn_S = preload("res://addons/Godot Shortcut Text/UI/custom_shortcut_S/Custom_Shortcut_S.tscn")
 #endregion
@@ -59,6 +60,13 @@ func _input(event: InputEvent) -> void:
 	#if have single key shortcut
 	if shortcuts_S:
 		for shortcut in shortcuts_S:
+			if shortcut.try_shortcut_text(event):
+				insert_text(shortcut.mode,shortcut.shortcut_text)
+				get_viewport().set_input_as_handled()    # stop the event spread
+	
+	var shortcuts = Snippet_Container.get_children()
+	if shortcuts:
+		for shortcut in shortcuts:
 			if shortcut.try_shortcut_text(event):
 				insert_text(shortcut.mode,shortcut.shortcut_text)
 				get_viewport().set_input_as_handled()    # stop the event spread
@@ -185,7 +193,6 @@ func append_custom_shortcut():
 
 #load
 func Loading():
-	
 	var Dic
 	var file
 	if FileAccess.file_exists(save_path):
