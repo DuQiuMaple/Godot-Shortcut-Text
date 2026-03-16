@@ -1,0 +1,115 @@
+[gd_scene format=3 uid="uid://3ueqfn0td28j"]
+
+[ext_resource type="Script" path="res://addons/Godot Shortcut Text/UI/manager.gd" id="1_gjx8c"]
+[ext_resource type="Script" path="res://addons/Godot Shortcut Text/UI/snippet_manager.gd" id="2_h58h3"]
+
+[node name="Dock" type="PanelContainer" unique_id=1048213829]
+custom_minimum_size = Vector2(0, 300)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_gjx8c")
+
+[node name="TabContainer" type="TabContainer" parent="." unique_id=728968585]
+layout_mode = 2
+current_tab = 0
+
+[node name="Custom_Shortcut" type="ScrollContainer" parent="TabContainer" unique_id=95663700]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="TabContainer/Custom_Shortcut" unique_id=166293748]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Custom_Shortcut/MarginContainer" unique_id=2008220675]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="title_S" type="Label" parent="TabContainer/Custom_Shortcut/MarginContainer/VBoxContainer" unique_id=294884253]
+layout_mode = 2
+text = "Custom_Shortcut(Single_Key):"
+
+[node name="SingleKey_Setting" type="HBoxContainer" parent="TabContainer/Custom_Shortcut/MarginContainer/VBoxContainer" unique_id=1103629350]
+layout_mode = 2
+theme_override_constants/separation = 24
+
+[node name="New_Custom_Shortcut_S" type="Button" parent="TabContainer/Custom_Shortcut/MarginContainer/VBoxContainer/SingleKey_Setting" unique_id=214755580]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+text = "New
+"
+
+[node name="Reset" type="Button" parent="TabContainer/Custom_Shortcut/MarginContainer/VBoxContainer/SingleKey_Setting" unique_id=1215932228]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Reset InputAction"
+
+[node name="Warning_container" type="HBoxContainer" parent="TabContainer/Custom_Shortcut/MarginContainer/VBoxContainer/SingleKey_Setting" unique_id=1011210579]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="TabContainer/Custom_Shortcut/MarginContainer/VBoxContainer/SingleKey_Setting/Warning_container" unique_id=1498137039]
+layout_mode = 2
+text = "Shortcut_Conflict_Warning:"
+
+[node name="Shortcut_Conflict_Warning" type="CheckButton" parent="TabContainer/Custom_Shortcut/MarginContainer/VBoxContainer/SingleKey_Setting/Warning_container" unique_id=1678502664]
+unique_name_in_owner = true
+layout_mode = 2
+button_pressed = true
+
+[node name="Custom_Shortcuts_S" type="VBoxContainer" parent="TabContainer/Custom_Shortcut/MarginContainer/VBoxContainer" unique_id=1330220051]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="title_M" type="Label" parent="TabContainer/Custom_Shortcut/MarginContainer/VBoxContainer" unique_id=1080566345]
+layout_mode = 2
+text = "Custom_Shortcut(Multiple_Key):"
+
+[node name="New_Custom_Shortcut_M" type="Button" parent="TabContainer/Custom_Shortcut/MarginContainer/VBoxContainer" unique_id=773515034]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+text = "New
+"
+
+[node name="Custom_Shortcuts_M" type="VBoxContainer" parent="TabContainer/Custom_Shortcut/MarginContainer/VBoxContainer" unique_id=1551872287]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Snippet_Manager" type="ScrollContainer" parent="TabContainer" unique_id=1476331684]
+visible = false
+layout_mode = 2
+script = ExtResource("2_h58h3")
+metadata/_tab_index = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="TabContainer/Snippet_Manager" unique_id=1696655979]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Snippet_Manager/MarginContainer" unique_id=1367868230]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Rescan" type="Button" parent="TabContainer/Snippet_Manager/MarginContainer/VBoxContainer" unique_id=1921687972]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Reset_InputAction"
+
+[node name="Snippet_Container" type="VBoxContainer" parent="TabContainer/Snippet_Manager/MarginContainer/VBoxContainer" unique_id=1753938374]
+unique_name_in_owner = true
+layout_mode = 2
