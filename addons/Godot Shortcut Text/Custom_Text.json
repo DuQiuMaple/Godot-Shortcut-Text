@@ -1,0 +1,11 @@
+{
+	"example":{
+		"Text":"#This is an example",
+		"Key":"4",
+		"mode":0,
+		"Ctrl":true,
+		"Alt":false,
+		"Shift":false,
+		"Enable":true
+	}
+}
